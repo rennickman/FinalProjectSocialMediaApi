@@ -12,6 +12,8 @@ class Api::V1::PostsController < ApiController
 
     # GET /posts/1 or /posts/1.json
     def show
+        # Render Post in JSON
+        render json: @post
     end
 
 
