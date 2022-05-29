@@ -1,0 +1,31 @@
+<!-- Wlecome Message - if User is logged In -->
+<% if current_user %>
+    <h1><%= "Hello, #{current_user.email}" %></h1>
+<% end %>
+
+
+
+<!-- Check if User is logged In using Devise built in method -->
+<% if user_signed_in? %>
+    <!-- Button to log User out - Destroys the Devise User Session -->
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<% else %>
+    <!-- Link to Devise User Log In Page -->
+    <%= link_to "Sign in", new_user_session_path %>
+    <!-- Link to Devise User Registration Page -->
+    <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
+
+
+
+
+<p>You can test the API with the following credentials</p>
+<div class="container">
+    <!-- Application Info - Displayed as Json -->
+    <!-- <%= @application.as_json %> -->
+
+    <!-- List of Links -->
+    <ul>
+        <li><%= link_to "Posts", posts_path %></li>
+    </ul>
+</div>
