@@ -1,30 +1,30 @@
-class PostsController < ApplicationController
-    # include ApplicationHelper
-
+class Api::V1::PostsController < ApiController
     before_action :set_post, only: %i[ show edit update destroy ]
-    # Make sure User is logged in before accessing Posts Controller
-    before_action :authenticate_user!
-    # Only admin can access Posts Controller
-    # before_action :is_admin?
-
 
     # GET /posts or /posts.json
     def index
         @posts = Post.all
+
+        # Render all posts in JSON
+        render json: @posts
     end
+
 
     # GET /posts/1 or /posts/1.json
     def show
     end
+
 
     # GET /posts/new
     def new
         @post = Post.new
     end
 
+
     # GET /posts/1/edit
     def edit
     end
+
 
     # POST /posts or /posts.json
     def create
@@ -41,6 +41,7 @@ class PostsController < ApplicationController
         end
     end
 
+
     # PATCH/PUT /posts/1 or /posts/1.json
     def update
         respond_to do |format|
@@ -53,6 +54,7 @@ class PostsController < ApplicationController
             end
         end
     end
+
 
     # DELETE /posts/1 or /posts/1.json
     def destroy
