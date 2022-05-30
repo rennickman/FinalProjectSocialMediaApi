@@ -19,10 +19,14 @@ class Api::V1::UsersController < ApiController
     # GET /me.json
     # Return information about the Current User
     def me
+
         if @current_user.nil?
             # Send error Message if Current User not found
             render json: { error: 'Not Authorized' }, status: :unauthorized
         else
+
+            @posts = Post.where(user_id: @current_user.id)
+
             # Return Information about current User
             render json: {
                 id: @current_user.id,
@@ -30,7 +34,8 @@ class Api::V1::UsersController < ApiController
                 role: @current_user.role,
                 firstname: @current_user.firstname,
                 surname: @current_user.surname,
-                created_at: @current_user.created_at.to_time.to_i
+                created_at: @current_user.created_at.to_time.to_i,
+                posts: @posts
             }, status: :ok
         end
     end
