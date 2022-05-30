@@ -28,6 +28,8 @@ class Api::V1::UsersController < ApiController
                 id: @current_user.id,
                 email: @current_user.email,
                 role: @current_user.role,
+                firstname: @current_user.firstname,
+                surname: @current_user.surname,
                 created_at: @current_user.created_at.to_time.to_i
             }, status: :ok
         end

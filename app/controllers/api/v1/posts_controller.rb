@@ -1,5 +1,8 @@
 class Api::V1::PostsController < ApiController
     before_action :set_post, only: %i[ show edit update destroy ]
+    # Call method to get Current User from Access Token
+    before_action :current_user
+
 
     # GET /posts or /posts.json
     def index
@@ -31,10 +34,10 @@ class Api::V1::PostsController < ApiController
     # POST /posts or /posts.json
     def create
         @post = Post.new(post_params)
-
+        @post.user = @current_user
         
         if @post.save
-            render json: @post, status: :created 
+            render json: @post,  status: :created
         else
             render json: @post.errors, status: :unprocessable_entity
         end
