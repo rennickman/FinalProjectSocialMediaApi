@@ -20,6 +20,8 @@ User.first_or_create(
     email: 'renn@example.com',
     password: 'password',
     password_confirmation: 'password',
+    firstname: "Ian",
+    surname: "Rennick",
     role: User.roles[:admin]
 )
 
