@@ -4,6 +4,8 @@ class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
             :recoverable, :rememberable, :validatable
 
+    
+    has_many :posts
 
             
     # Enum to represent User Roles - Default is set to 0 (:user) when Devise User account is first created
