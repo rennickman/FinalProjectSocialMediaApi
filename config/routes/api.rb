@@ -6,8 +6,10 @@ namespace :api do
             post '/', to: 'registrations#create', as: :user_registration
         end
 
-        # Routes for Posts
-        resources :posts
+        # Routes for Posts, Comments
+        resources :posts do
+            resources :comments
+        end
 
         # User Routes
         get '/users/me', to: 'users#me'

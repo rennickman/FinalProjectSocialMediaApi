@@ -15,8 +15,11 @@ class Api::V1::PostsController < ApiController
 
     # GET /posts/1 or /posts/1.json
     def show
-        # Render Post in JSON
-        render json: @post
+        # Get comments for post
+        @comments = @post.comments.order(created_at: :desc)
+
+        # Render Post and comments in JSON
+        render json: { post: @post, comments: @comments }
     end
 
 

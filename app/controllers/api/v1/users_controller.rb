@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApiController
     before_action :current_user
     respond_to    :json
 
-
+    
 
     
     # GET /users or /users.json
@@ -24,7 +24,8 @@ class Api::V1::UsersController < ApiController
             # Send error Message if Current User not found
             render json: { error: 'Not Authorized' }, status: :unauthorized
         else
-
+            
+            # Get all posts sent by Current User
             @posts = Post.where(user_id: @current_user.id)
 
             # Return Information about current User
