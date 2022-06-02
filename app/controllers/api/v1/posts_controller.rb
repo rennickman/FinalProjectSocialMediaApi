@@ -6,7 +6,7 @@ class Api::V1::PostsController < ApiController
 
     # GET /posts or /posts.json
     def index
-        @posts = Post.all
+        @posts = Post.all.order(created_at: :desc)
 
         # Render all posts in JSON with User Included
         render json: @posts, include: [:user, :comments, :post_likes]

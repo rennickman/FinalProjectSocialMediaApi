@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApiController
     # before_action :doorkeeper_authorize!
+    before_action :set_user, only: %i[ show edit update destroy ]
     # Call method to get Current User from Access Token
     before_action :current_user
     respond_to    :json
@@ -13,6 +14,16 @@ class Api::V1::UsersController < ApiController
 
         # Render all Users in JSON
         render json: @users
+    end
+
+
+    # GET /users/1 or /users/1.json
+    def show
+        # Get posts for user
+        @posts = @user.posts.order(created_at: :desc)
+
+        # Render Post and comments in JSON
+        render json: @posts, include: [:user, :comments, :post_likes]
     end
 
     
@@ -39,5 +50,16 @@ class Api::V1::UsersController < ApiController
                 posts: @posts
             }, status: :ok
         end
+    end
+
+
+
+
+    private 
+
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+        @user = User.find(params[:id])
     end
 end
