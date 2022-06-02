@@ -8,8 +8,8 @@ class Api::V1::PostsController < ApiController
     def index
         @posts = Post.all
 
-        # Render all posts in JSON
-        render json: @posts
+        # Render all posts in JSON with User Included
+        render json: @posts, include: [:user, :comments]
     end
 
 
