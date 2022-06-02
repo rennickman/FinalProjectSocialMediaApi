@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_31_221124) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_02_164040) do
   create_table "comments", force: :cascade do |t|
     t.text "message"
     t.integer "post_id", null: false
@@ -49,6 +49,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_221124) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "post_likes", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_likes_on_post_id"
+    t.index ["user_id"], name: "index_post_likes_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "comment"
     t.datetime "created_at", null: false
@@ -75,5 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_31_221124) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "post_likes", "posts"
+  add_foreign_key "post_likes", "users"
   add_foreign_key "posts", "users"
 end

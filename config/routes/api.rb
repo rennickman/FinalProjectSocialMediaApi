@@ -9,6 +9,7 @@ namespace :api do
         # Routes for Posts, Comments
         resources :posts do
             resources :comments
+            resources :post_likes
         end
 
         # User Routes

@@ -9,7 +9,7 @@ class Api::V1::PostsController < ApiController
         @posts = Post.all
 
         # Render all posts in JSON with User Included
-        render json: @posts, include: [:user, :comments]
+        render json: @posts, include: [:user, :comments, :post_likes]
     end
 
 
@@ -17,9 +17,10 @@ class Api::V1::PostsController < ApiController
     def show
         # Get comments for post
         @comments = @post.comments.order(created_at: :desc)
+        @post_likes = @post.post_likes.order(created_at: :desc)
 
         # Render Post and comments in JSON
-        render json: { post: @post, comments: @comments }
+        render json: { post: @post, comments: @comments, post_likes: @post_likes }
     end
 
 

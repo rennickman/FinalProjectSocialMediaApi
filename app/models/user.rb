@@ -7,6 +7,7 @@ class User < ApplicationRecord
     
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
+    has_many :post_likes, dependent: :destroy
             
     # Enum to represent User Roles - Default is set to 0 (:user) when Devise User account is first created
     enum role: %i[user, admin]
