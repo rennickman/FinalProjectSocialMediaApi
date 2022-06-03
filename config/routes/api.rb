@@ -15,7 +15,6 @@ namespace :api do
         # User Routes
         get '/users/me', to: 'users#me'
        
-
         resources :users, only: [:index, :show]
     end
 end
