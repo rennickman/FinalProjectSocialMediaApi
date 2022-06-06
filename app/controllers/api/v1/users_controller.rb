@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApiController
     # before_action :doorkeeper_authorize!
-    before_action :set_user, only: %i[ show edit update destroy ]
+    before_action :set_user, only: %i[ show edit update destroy info]
     # Call method to get Current User from Access Token
     before_action :current_user
     respond_to    :json
@@ -23,8 +23,14 @@ class Api::V1::UsersController < ApiController
         @posts = @user.posts.order(created_at: :desc)
 
         # Render Post and comments in JSON
-        render json: @posts, include: [:user, :comments, :post_likes]
+        render json:  @posts, include: [:user, :comments, :post_likes]
     end
+
+
+    def info 
+        render json: @user
+    end
+
 
     
     # GET /me.json
