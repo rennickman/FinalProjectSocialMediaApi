@@ -20,10 +20,7 @@ class Api::V1::PostLikesController < ApiController
     def destroy
         @post_like.destroy
 
-        respond_to do |format|
-            format.html { redirect_to posts_url, notice: "Like was successfully destroyed." }
-            format.json { head :no_content }
-        end
+        render json: {}, status: :ok
     end
 
 
