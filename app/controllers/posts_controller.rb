@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
     before_action :set_post, only: %i[ show edit update destroy ]
     # Make sure User is logged in before accessing Posts Controller
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
     # Only admin can access Posts Controller
     # before_action :is_admin?
 
@@ -65,6 +65,12 @@ class PostsController < ApplicationController
     end
 
 
+    # Method for testing image upload
+    def latest
+        # @post = Post.last.to_json(include: [:image])
+        @post = Post.last
+        render json: @post, methods:[:image_url]
+    end
 
 
     private
@@ -77,6 +83,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-        params.require(:post).permit(:comment)
+        params.require(:post).permit(:comment, :image)
     end
+
 end
