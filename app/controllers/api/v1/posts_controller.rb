@@ -9,7 +9,7 @@ class Api::V1::PostsController < ApiController
         @posts = Post.all.order(created_at: :desc)
 
         # Render all posts in JSON with User Included
-        render json: @posts, include: [:user, :comments, :post_likes]
+        render json: @posts, include: [:user, :comments, :post_likes], methods: [:image_url]
     end
 
 
@@ -85,6 +85,6 @@ class Api::V1::PostsController < ApiController
 
     # Only allow a list of trusted parameters through.
     def post_params
-        params.require(:post).permit(:comment)
+        params.require(:post).permit(:comment, :image)
     end
 end

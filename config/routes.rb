@@ -12,4 +12,7 @@ Rails.application.routes.draw do
     draw :api
 
     resources :posts
+
+    # Test route for image upload
+    get 'latest', to: 'posts#latest'
 end
