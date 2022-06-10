@@ -28,7 +28,7 @@ class Api::V1::UsersController < ApiController
 
 
     def info 
-        render json: @user
+        render json: @user, methods: [:image_url]
     end
 
 
