@@ -39,7 +39,7 @@ module Api
 
                 def user_params
                     params.permit(:email, :password, :firstname, :surname, :client_id, :status, :originalCity,
-                                    :currentCity, :loves, :hates, :desc)
+                                    :currentCity, :loves, :hates, :desc, :avatar)
                 end
             end
         end

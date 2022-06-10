@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApiController
         @users = User.all
 
         # Render all Users in JSON
-        render json: @users
+        render json: @users, methods: [:image_url]
     end
 
 
