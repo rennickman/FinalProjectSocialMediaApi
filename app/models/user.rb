@@ -24,6 +24,22 @@ class User < ApplicationRecord
 
 
 
+    # Returns an array of follows where user is followed user
+    has_many :reveived_follows, foreign_key: :followed_user_id, class_name: "Follow"
+
+    # Returns an array of users who follow this user
+    has_many :followers, through: :reveived_follows, source: :follower
+
+
+    # Returns an array of follows this user made
+    has_many :given_follows, foreign_key: :follower_id, class_name: "Follow"
+
+    # Returns an array of users this user has followed
+    has_many :followings, through: :given_follows, source: :followed_user
+
+
+
+
      # Authenticate User Method taken from the Devise documentation
     def self.authenticate(email, password)
         user = User.find_for_authentication(email: email)
