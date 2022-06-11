@@ -15,6 +15,8 @@ namespace :api do
         # User Routes
         get '/users/me', to: 'users#me'
         get '/users/:id/info', to: 'users#info'
+        post '/users/:id/follow', to: 'users#follow'
+        delete '/users/:id/unfollow', to: 'users#unfollow'
        
         resources :users, only: [:index, :show]
     end

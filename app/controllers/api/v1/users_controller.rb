@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApiController
     # before_action :doorkeeper_authorize!
-    before_action :set_user, only: %i[ show edit update destroy info]
+    before_action :set_user, only: %i[ show edit update destroy info follow unfollow]
     # Call method to get Current User from Access Token
     before_action :current_user
     respond_to    :json
@@ -36,29 +36,36 @@ class Api::V1::UsersController < ApiController
     # GET /me.json
     # Return information about the Current User
     def me
-
         if @current_user.nil?
             # Send error Message if Current User not found
             render json: { error: 'Not Authorized' }, status: :unauthorized
         else
-            
-            # Get all posts sent by Current User
-            @posts = Post.where(user_id: @current_user.id)
-
-            # Return Information about current User
-            render json: {
-                id: @current_user.id,
-                email: @current_user.email,
-                role: @current_user.role,
-                firstname: @current_user.firstname,
-                surname: @current_user.surname,
-                created_at: @current_user.created_at.to_time.to_i,
-                posts: @posts
-            }, status: :ok
+            # Return  current User
+            render json: @current_user, methods: [:image_url, :followers, :followings]
         end
     end
 
 
+
+    def follow
+        @follow = Follow.new()
+        @follow.follower_id = @current_user.id
+        @follow.followed_user_id = @user.id
+        
+        if @follow.save
+            render json: @follow,  status: :created
+        else
+            render json: @follow.errors, status: :unprocessable_entity
+        end
+    end
+
+
+    def unfollow
+        @follow = Follow.find_by(follower_id: @current_user.id, followed_user_id: @user.id)
+
+        @follow.destroy
+        render json: {}, status: :ok
+    end
 
 
     private 
