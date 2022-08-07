@@ -38,6 +38,11 @@ class User < ApplicationRecord
     has_many :followings, through: :given_follows, source: :followed_user
 
 
+    # Returns an array of conversations where user is user_a
+    has_many :initiated_conversations, foreign_key: :user_a_id, class_name: 'Conversation'
+
+    # Returns an array of conversations where user is user_b
+    has_many :received_conversations, foreign_key: :user_b_id, class_name: 'Conversation'
 
 
      # Authenticate User Method taken from the Devise documentation

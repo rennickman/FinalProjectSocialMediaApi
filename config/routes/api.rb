@@ -17,6 +17,9 @@ namespace :api do
         get '/users/:id/info', to: 'users#info'
         post '/users/:id/follow', to: 'users#follow'
         delete '/users/:id/unfollow', to: 'users#unfollow'
+
+        # Chat Routes
+        resources :conversations, only: [:index, :show, :create]
        
         resources :users, only: [:index, :show]
     end

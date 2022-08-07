@@ -41,7 +41,7 @@ class Api::V1::UsersController < ApiController
             render json: { error: 'Not Authorized' }, status: :unauthorized
         else
             # Return  current User
-            render json: @current_user, methods: [:image_url, :followings]
+            render json: @current_user, methods: [:image_url, :followings, :initiated_conversations]
         end
     end
 
