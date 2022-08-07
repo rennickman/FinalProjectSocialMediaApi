@@ -12,11 +12,16 @@ namespace :api do
             resources :post_likes
         end
 
+        resources :conversations do
+            resources :messages
+        end
+
         # User Routes
         get '/users/me', to: 'users#me'
         get '/users/:id/info', to: 'users#info'
         post '/users/:id/follow', to: 'users#follow'
         delete '/users/:id/unfollow', to: 'users#unfollow'
+
        
         resources :users, only: [:index, :show]
     end
