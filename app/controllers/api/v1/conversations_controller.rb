@@ -17,7 +17,7 @@ class Api::V1::ConversationsController < ApiController
     def show
 
         # Render Conversation in JSON
-        render json: @conversation
+        render json: @conversation, include: [:messages]
     end
 
 
