@@ -28,7 +28,7 @@ class Api::V1::UsersController < ApiController
 
 
     def info 
-        render json: @user, methods: [:image_url]
+        render json: @user, methods: [:image_url, :followings, :followers]
     end
 
 
@@ -41,7 +41,7 @@ class Api::V1::UsersController < ApiController
             render json: { error: 'Not Authorized' }, status: :unauthorized
         else
             # Return  current User
-            render json: @current_user, methods: [:image_url, :followers, :followings]
+            render json: @current_user, methods: [:image_url, :followings]
         end
     end
 
