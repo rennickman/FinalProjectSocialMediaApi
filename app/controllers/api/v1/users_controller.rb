@@ -23,7 +23,7 @@ class Api::V1::UsersController < ApiController
         @posts = @user.posts.order(created_at: :desc)
 
         # Render Post and comments in JSON
-        render json:  @posts, include: [:user, :comments, :post_likes]
+        render json:  @posts, include: [:user, :comments, :post_likes], methods: [:image_url]
     end
 
 

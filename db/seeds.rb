@@ -22,8 +22,90 @@ User.first_or_create(
     password_confirmation: 'password',
     firstname: "Ian",
     surname: "Rennick",
-    role: User.roles[:admin]
+    role: User.roles[:admin],
+    status: "Finishing project",
+    originalCity: "Newbridge",
+    currentCity: "Dublin",
+    loves: "Wigan",
+    hates: "This project",
+    desc: "Bla bla bla di bla"
 )
 
 
+
+# Adding test users
+User.create(
+    email: 'test@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    firstname: "Test",
+    surname: "Testerson",
+    role: User.roles[:user],
+    status: "Testing shit",
+    originalCity: "Newbridge",
+    currentCity: "Dublin",
+    loves: "Testing",
+    hates: "Not testing",
+    desc: "Testing all day bai"
+)
+
+User.create(
+    email: 'bob@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    firstname: "Bob",
+    surname: "Robertson",
+    role: User.roles[:user],
+    status: "Bobbing it",
+    originalCity: "Newbridge",
+    currentCity: "Dublin",
+    loves: "Bobbing for apples",
+    hates: "Bobcats",
+    desc: "Story hai"
+)
+
+User.create(
+    email: 'Tim@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    firstname: "Tim",
+    surname: "Tompson",
+    role: User.roles[:user],
+    status: "Tim Lad!!!",
+    originalCity: "Newbridge",
+    currentCity: "Dublin",
+    loves: "Timmin and thawing",
+    hates: "Cheese",
+    desc: "Craic lad?"
+)
+
+User.create(
+    email: 'mick@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    firstname: "Mick",
+    surname: "Mackerson",
+    role: User.roles[:user],
+    status: "Mickying about",
+    originalCity: "Newbridge",
+    currentCity: "Dublin",
+    loves: "Mickys",
+    hates: "Starburst",
+    desc: "Hip to da hop"
+)
+
+User.create(
+    email: 'sam@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    firstname: "Sam",
+    surname: "Sampson",
+    role: User.roles[:user],
+    status: "Sammin it about",
+    originalCity: "Newbridge",
+    currentCity: "Dublin",
+    loves: "Sun and sand",
+    hates: "Rain and snow",
+    desc: "Sam the man"
+)
 

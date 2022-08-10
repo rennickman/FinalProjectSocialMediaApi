@@ -21,6 +21,14 @@ class Api::V1::ConversationsController < ApiController
     end
 
 
+
+    def check
+        @conversation = Conversation.where(name: params[:name])
+
+        render json: @conversation
+    end
+
+
     # GET /conversations/new
     def new
         @conversation = Conversation.new
@@ -42,8 +50,7 @@ class Api::V1::ConversationsController < ApiController
 
 
 
-
-
+  
 
 
     private

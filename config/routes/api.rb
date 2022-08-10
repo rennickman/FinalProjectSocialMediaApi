@@ -22,6 +22,8 @@ namespace :api do
         post '/users/:id/follow', to: 'users#follow'
         delete '/users/:id/unfollow', to: 'users#unfollow'
 
+        get '/conversations/check/:name', to: 'conversations#check'
+
        
         resources :users, only: [:index, :show]
     end
