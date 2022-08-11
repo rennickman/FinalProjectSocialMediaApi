@@ -13,6 +13,13 @@ Rails.application.routes.draw do
 
     resources :posts
 
+
+
+    # Action cable route
+    mount ActionCable.server => "/cable"
+
+
+
     # Test route for image upload
     get 'latest', to: 'posts#latest'
 end

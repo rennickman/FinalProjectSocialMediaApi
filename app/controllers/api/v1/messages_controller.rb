@@ -10,6 +10,8 @@ class Api::V1::MessagesController < ApiController
         @message.user = @current_user
 
         if @message.save
+            ConversationChannel.broadcast_to(@conversation, @message)
+
             render json: @message,  status: :created
         else
             render json: @message.errors, status: :unprocessable_entity
