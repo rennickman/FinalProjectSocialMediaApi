@@ -22,14 +22,17 @@ module Api
                     allowed_params = user_params.except(:client_id)
 
                     # Create new user using Email and Password from params
-                    user = User.new(allowed_params)
+                    @user = User.new(allowed_params)
 
-                    if user.save
+                    if @user.save
+
+                        ActionCable.server.broadcast('users_channel', @user)
+
                         # Return user if it was saved
-                        render json: render_user(user, client_app), status: :ok
+                        render json: render_user(@user, client_app), status: :ok
                     else 
                         # Return error message if User couldnt be saved
-                        render json: { errors: user.errors }, status: :unprocessable_entity
+                        render json: { errors: @user.errors }, status: :unprocessable_entity
                     end
                 end
 

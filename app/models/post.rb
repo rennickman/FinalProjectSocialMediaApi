@@ -9,6 +9,11 @@ class Post < ApplicationRecord
 
 
 
+    has_noticed_notifications model_name: 'Notification'
+    has_many :notifications, through: :user, dependent: :destroy
+
+
+
     # Create Url for Image if post has one
     def image_url
         Rails.application.routes.url_helpers.url_for(image) if image.attached?

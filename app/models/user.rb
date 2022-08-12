@@ -47,6 +47,10 @@ class User < ApplicationRecord
     has_many :received_conversations, foreign_key: :user_b_id, class_name: 'Conversation'
 
 
+
+    has_many :notifications, as: :recipient, dependent: :destroy
+
+
      # Authenticate User Method taken from the Devise documentation
     def self.authenticate(email, password)
         user = User.find_for_authentication(email: email)
