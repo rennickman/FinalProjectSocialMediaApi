@@ -16,6 +16,9 @@ namespace :api do
             resources :messages
         end
 
+        resources :notifications 
+
+
         # User Routes
         get '/users/me', to: 'users#me'
         get '/users/:id/info', to: 'users#info'
