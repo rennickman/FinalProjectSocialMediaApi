@@ -46,6 +46,13 @@ class Api::V1::UsersController < ApiController
     end
 
 
+    def followings
+        @followings = @current_user.followings
+
+        render json: @followings
+    end
+
+
 
     def follow
         @follow = Follow.new()
