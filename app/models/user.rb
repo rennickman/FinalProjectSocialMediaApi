@@ -11,10 +11,12 @@ class User < ApplicationRecord
     
     has_many :messages, dependent: :destroy
 
+    # Images
     has_one_attached :avatar
+    has_one_attached :cover
 
     after_commit :add_default_avatar, on: %i[create update]
-
+    after_commit :add_default_cover, on: %i[create update]
 
             
     # Enum to represent User Roles - Default is set to 0 (:user) when Devise User account is first created
@@ -64,6 +66,10 @@ class User < ApplicationRecord
         Rails.application.routes.url_helpers.url_for(avatar) if avatar.attached?
     end
 
+    # Create Url for Cover
+    def cover_url
+        Rails.application.routes.url_helpers.url_for(cover) if cover.attached?
+    end
 
 
 
@@ -77,6 +83,17 @@ class User < ApplicationRecord
         avatar.attach(
             io: File.open(Rails.root.join('app', 'assets', 'images', 'default_avatar.png')),
             filename: 'default_avatar.png',
+            content_type: 'image/png'
+        )  
+    end
+
+
+    def add_default_cover
+        return if cover.attached?
+
+        cover.attach(
+            io: File.open(Rails.root.join('app', 'assets', 'images', 'CoverRock.png')),
+            filename: 'CoverRock.png',
             content_type: 'image/png'
         )  
     end

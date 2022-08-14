@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApiController
     # before_action :doorkeeper_authorize!
-    before_action :set_user, only: %i[ show edit update destroy info follow unfollow]
+    before_action :set_user, only: %i[ show edit destroy info follow unfollow]
     # Call method to get Current User from Access Token
     before_action :current_user
     respond_to    :json
@@ -28,7 +28,7 @@ class Api::V1::UsersController < ApiController
 
 
     def info 
-        render json: @user, methods: [:image_url, :followings, :followers]
+        render json: @user, methods: [:image_url, :followings, :followers, :cover_url]
     end
 
 
@@ -75,11 +75,25 @@ class Api::V1::UsersController < ApiController
     end
 
 
+    def updateInfo
+        if @current_user.update(user_params)
+            render json: @current_user,  status: :accepted
+        else
+            render json: @current_user.errors, methods: [:image_url, :followings, :cover_url], status: :unprocessable_entity
+        end
+    end
+
+
     private 
 
 
     # Use callbacks to share common setup or constraints between actions.
     def set_user
         @user = User.find(params[:id])
+    end
+
+   # Only allow a list of trusted parameters through.
+    def user_params
+        params.require(:user).permit(:firstname, :surname, :status, :currentCity, :loves, :hates, :desc, :avatar, :cover)
     end
 end

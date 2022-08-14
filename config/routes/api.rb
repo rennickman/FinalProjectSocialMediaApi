@@ -25,6 +25,7 @@ namespace :api do
         get '/users/:id/info', to: 'users#info'
         post '/users/:id/follow', to: 'users#follow'
         delete '/users/:id/unfollow', to: 'users#unfollow'
+        put 'users/updateInfo', to: 'users#updateInfo'
 
         get '/conversations/check/:name', to: 'conversations#check'
 
