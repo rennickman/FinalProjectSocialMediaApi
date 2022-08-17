@@ -41,7 +41,7 @@ class Api::V1::UsersController < ApiController
             render json: { error: 'Not Authorized' }, status: :unauthorized
         else
             # Return  current User
-            render json: @current_user, methods: [:image_url, :followings, :initiated_conversations]
+            render json: @current_user, methods: [:image_url, :followings]
         end
     end
 
@@ -52,6 +52,9 @@ class Api::V1::UsersController < ApiController
         render json: @followings
     end
 
+    def conversations
+        render json: @current_user, methods: [:initiated_conversations, :received_conversations]
+    end
 
 
     def follow
@@ -77,10 +80,17 @@ class Api::V1::UsersController < ApiController
 
     def updateInfo
         if @current_user.update(user_params)
-            render json: @current_user,  status: :accepted
+            render json: @current_user, methods: [:image_url, :followings, :cover_url], status: :accepted
         else
-            render json: @current_user.errors, methods: [:image_url, :followings, :cover_url], status: :unprocessable_entity
+            render json: @current_user.errors,  status: :unprocessable_entity
         end
+    end
+
+
+      def randomPost
+        @random_post = Post.all.sample
+
+        render json: @random_post, methods: [:image_url]
     end
 
 

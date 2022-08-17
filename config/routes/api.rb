@@ -23,10 +23,11 @@ namespace :api do
         get '/users/me', to: 'users#me'
         get '/users/followings', to: 'users#followings'
         get '/users/:id/info', to: 'users#info'
+        get '/users/conversations', to: 'users#conversations'
         post '/users/:id/follow', to: 'users#follow'
         delete '/users/:id/unfollow', to: 'users#unfollow'
         put 'users/updateInfo', to: 'users#updateInfo'
-
+        get 'users/randomPost', to: 'users#randomPost'
         get '/conversations/check/:name', to: 'conversations#check'
 
        

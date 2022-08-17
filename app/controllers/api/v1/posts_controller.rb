@@ -48,6 +48,9 @@ class Api::V1::PostsController < ApiController
     end
 
 
+  
+
+
     # PATCH/PUT /posts/1 or /posts/1.json
     def update
         respond_to do |format|

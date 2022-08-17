@@ -81,7 +81,7 @@ class User < ApplicationRecord
         return if avatar.attached?
 
         avatar.attach(
-            io: File.open(Rails.root.join('app', 'assets', 'images', 'default_avatar.png')),
+            io: File.open(Rails.root.join('app', 'assets', 'images', 'defaultAvatar2.png')),
             filename: 'default_avatar.png',
             content_type: 'image/png'
         )  
@@ -92,7 +92,7 @@ class User < ApplicationRecord
         return if cover.attached?
 
         cover.attach(
-            io: File.open(Rails.root.join('app', 'assets', 'images', 'CoverRock.png')),
+            io: File.open(Rails.root.join('app', 'assets', 'images', 'defaultCover.jpg')),
             filename: 'CoverRock.png',
             content_type: 'image/png'
         )  

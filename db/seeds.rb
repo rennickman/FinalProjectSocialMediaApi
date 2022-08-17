@@ -24,11 +24,10 @@ User.first_or_create(
     surname: "Rennick",
     role: User.roles[:admin],
     status: "Finishing project",
-    originalCity: "Newbridge",
-    currentCity: "Dublin",
-    loves: "Wigan",
-    hates: "This project",
-    desc: "Bla bla bla di bla"
+    currentCity: "Newbridge",
+    loves: "Football, music, sports",
+    hates: "Vegetables and raggaeton",
+    desc: "Hey, I'm really into computers and bikes"
 )
 
 
@@ -41,12 +40,12 @@ User.create(
     firstname: "Test",
     surname: "Testerson",
     role: User.roles[:user],
-    status: "Testing shit",
+    status: "Testing stuff",
     originalCity: "Newbridge",
     currentCity: "Dublin",
-    loves: "Testing",
-    hates: "Not testing",
-    desc: "Testing all day bai"
+    loves: "Testing, fixing things",
+    hates: "When things don't work",
+    desc: "I am not a real person"
 )
 
 User.create(
@@ -59,9 +58,9 @@ User.create(
     status: "Bobbing it",
     originalCity: "Newbridge",
     currentCity: "Dublin",
-    loves: "Bobbing for apples",
-    hates: "Bobcats",
-    desc: "Story hai"
+    loves: "Comic books and movies",
+    hates: "The beach and getting sub burnt",
+    desc: "Hey, I'm really into computers and bikes"
 )
 
 User.create(
@@ -74,9 +73,9 @@ User.create(
     status: "Tim Lad!!!",
     originalCity: "Newbridge",
     currentCity: "Dublin",
-    loves: "Timmin and thawing",
-    hates: "Cheese",
-    desc: "Craic lad?"
+    loves: "Long walks by the sea",
+    hates: "Cheese and chocolate",
+    desc: "Hey, I'm really into computers and bikes"
 )
 
 User.create(
@@ -89,9 +88,9 @@ User.create(
     status: "Mickying about",
     originalCity: "Newbridge",
     currentCity: "Dublin",
-    loves: "Mickys",
-    hates: "Starburst",
-    desc: "Hip to da hop"
+    loves: "Basketball and camping",
+    hates: "Morning time and cold showers",
+    desc: "Hey, I'm really into computers and bikes"
 )
 
 User.create(
@@ -106,6 +105,6 @@ User.create(
     currentCity: "Dublin",
     loves: "Sun and sand",
     hates: "Rain and snow",
-    desc: "Sam the man"
+    desc: "Hey, I'm really into computers and bikes"
 )
 
